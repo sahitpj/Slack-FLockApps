@@ -1,0 +1,18 @@
+{
+  "name": "flock-testing",
+  "version": "0.0.1",
+  "description": "flock testing app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sahit",
+  "license": "ISC",
+  "dependencies": {
+    "chrono-node": "^1.3.5",
+    "express": "^4.16.3",
+    "flockos": "0.0.6",
+    "fs": "0.0.1-security",
+    "mustache": "^2.3.0"
+  }
+}
