@@ -26,7 +26,6 @@ app.listen(PORT, function(){
 });
 
 app.get('/oauth', function(req, res){
-	
 	console.log('Recieved request');
 });
 
@@ -35,9 +34,6 @@ app.post('/command', function(req, res){
 	//console.log(process.env.SLACK_TOKEN);
 	console.log('Recieved a slask command request');
 	console.log(req.body.token);
-	//const rtm = new RTMClient(config.verificationToken);
-	//rtm.start();
-	//sendMessage(rtm, 'Hello world', res, req.body.user_id);
 	res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({
     "response_type": "in_channel",
@@ -49,5 +45,28 @@ app.post('/command', function(req, res){
     ]
 }));
 });
+
+const rtm = new RTMClient(config.token);
+rtm.start();
+
+rtm.on('message', (event) => {
+  // Structure of `event`: <https://api.slack.com/events/message>
+  console.log(`Message from ${event.user}: ${event.text}`);
+  //console.log(event);
+  rtm.sendMessage("hello world", event.channel)
+   .then((res) => {
+	    // `res` contains information about the posted message
+	    console.log('Message sent: ', res.ts);
+	  })
+	.catch(console.error);
+ });
+
+
+
+
+
+
+
+
 
 
